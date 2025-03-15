@@ -13,10 +13,10 @@ import UIKit
          
          let firstWindow = LogInViewController(nibName: LogInViewController.identifier, bundle: nil)
          
-         let navController = UINavigationController(rootViewController: firstWindow)
+         let navigationController = UINavigationController(rootViewController: firstWindow)
          
          
-         window.rootViewController = navController
+         window.rootViewController = navigationController
          window.makeKeyAndVisible()
          self.window = window
          

@@ -81,10 +81,6 @@ private func getHeros() {
                 snapshot.appendSections([.Heroes])
                 snapshot.appendItems(self.heroes)
                 self.dataSource?.apply(snapshot)
-                print("Obteidos")
-                
-            //    let infoHero = InfoHeroViewController()
-             //   self?.navigationController?.
                 
             }
         case let.failure(error):
@@ -106,6 +102,22 @@ extension HeroesTableViewController {
         _ tableView: UITableView,
         heightForRowAt indexPath: IndexPath
     ) -> CGFloat {
-        250
+        120
+    }
+    
+    
+    
+    override func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+
+        let heroViewController = InfoHeroViewController(nibName: InfoHeroViewController.identifierInfo, bundle: nil)
+        
+        heroViewController.hero = self.heroes[indexPath.row]
+        
+        
+        self.navigationController?.show(heroViewController, sender: self)
     }
 }
+

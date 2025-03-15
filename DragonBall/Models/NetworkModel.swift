@@ -91,7 +91,7 @@ final class NetworkModel {
                             completion: @escaping (Result<[Transformation], APIClientError>) -> Void) {
         
         var components = baseComponents
-        components.path = "/api/heros/transformations"
+        components.path = "/api/heros/tranformations"
         
         guard let url = components.url else {
             completion(.failure(.malformedURL))

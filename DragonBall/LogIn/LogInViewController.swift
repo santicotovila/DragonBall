@@ -14,20 +14,12 @@ final class LogInViewController: UIViewController {
     
     
     //MARK: - Outlets
+
+    @IBOutlet var BackgroundLogin: UIImageView!
     
-    @IBOutlet var BackgroundLogIn: UIImageView!
+    @IBOutlet var EmailLabel: UITextField!
     
-    @IBOutlet var MenuLogin: UIView!
-    
-    @IBOutlet var LabelEmail: UILabel!
-    
-    @IBOutlet var BoxEmail: UITextField!
-    
-    @IBOutlet var LabelPassword: UILabel!
-    
-    @IBOutlet var BoxPassword: UITextField!
-    
-    @IBOutlet var BoxContinue: UIButton!
+    @IBOutlet var PasswordLabel: UITextField!
     
     
     
@@ -41,13 +33,21 @@ final class LogInViewController: UIViewController {
     
     @IBAction func LogInButtonTapped() {
         getLogin()
-        
     }
+    
+       
+        
+    
         
         
         
         
 private func getLogin() {
+    
+    /*guard let user = EmailLabel.text, !user.isEmpty,
+            let password = PasswordLabel.text, !password.isEmpty else {return}*/
+    
+    
     let networkModel = NetworkModel.shared
         networkModel.login(
         user: "s@gmail.com",
@@ -60,6 +60,7 @@ private func getLogin() {
                     
                 let heroesTableViewController = HeroesTableViewController()
                     self?.navigationController?.setViewControllers([heroesTableViewController], animated: true)
+                    
                 
             }
                     
@@ -85,13 +86,16 @@ private extension LogInViewController {
     
     func customizeItems() {
         
-        MenuLogin.backgroundColor = UIColor.white.withAlphaComponent(0.9)
-        MenuLogin.layer.cornerRadius = 50
-        LabelEmail.font = UIFont.boldSystemFont(ofSize: 22)
-        BoxEmail.layer.cornerRadius = 15
-        LabelPassword.font = UIFont.boldSystemFont(ofSize: 22)
-        BoxPassword.layer.cornerRadius = 15
-        BoxContinue.layer.cornerRadius = 50
+        BackgroundLogin.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(BackgroundLogin, at: 0)
+
+        NSLayoutConstraint.activate([
+            BackgroundLogin.topAnchor.constraint(equalTo: view.topAnchor),
+            BackgroundLogin.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            BackgroundLogin.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            BackgroundLogin.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
         
     }
 }
