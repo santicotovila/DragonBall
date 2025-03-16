@@ -35,17 +35,17 @@ final class LogInViewController: UIViewController {
         getLogin()
     }
     
-       
+    //He tenido que crear esta función porque quería dejar como rpivada la de getLogin y para asi hacer las pruebas del login a red.
+
+func performLogin(user: String, password: String, completion: @escaping (Result<String, APIClientError>) -> Void) {
+        let networkModel = NetworkModel.shared
+        networkModel.login(user: user, password: password, completion: completion)
+        }
         
+    private func getLogin() {
     
-        
-        
-        
-        
-private func getLogin() {
-    
-    /*guard let user = EmailLabel.text, !user.isEmpty,
-            let password = PasswordLabel.text, !password.isEmpty else {return}*/
+    guard let user = EmailLabel.text, !user.isEmpty,
+            let password = PasswordLabel.text, !password.isEmpty else {return}
     
     
     let networkModel = NetworkModel.shared

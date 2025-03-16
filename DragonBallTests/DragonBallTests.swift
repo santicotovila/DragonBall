@@ -12,45 +12,74 @@ final class HeroTests: XCTestCase {
     private var sut: Hero!
     
     func test_init_withName_isGoku() {
-
+        
         //Given
         let name = "Goku"
         //When
-        sut = Hero(id: "some_id",
-                   photo: "",
+        sut = Hero(id: "D13A40E5-4418-4223-9CE6-D2F9A28EBE94",
                    favorite: false,
                    name: name,
-                   description: "some-description")
+                   description: "",
+                   photo: "")
+                   
+                   
+                   
         //Then// Assert
         XCTAssertEqual(sut.name, name)
         
+        
+    }
+}
+
+final class TransformationTest: XCTestCase {
+    private var sut: Transformation!
+    
+    func test_init_withTransformation_isSuperSaiyan() {
+        
+        //Give
+        let name = "Super Saiyan"
+        
+        // When
+        
+        sut = Transformation(name: name,
+                             id: "",
+                             photo: "",
+                             description: "")
+        
+        //Assert
+        
+        XCTAssertEqual(sut.name, name)
+    }
+}
+
+final class LoginAuthenticate: XCTestCase {
+    
+    var sut: NetworkModel!
+    
+    override func setUp() {
+        super.setUp()
+        // Iniciamos el objeto NetworkModel que va a usar el APIClient real
+        sut = NetworkModel.shared
+    }
+
+    func testLoginSuccess() {
+        
+        let validUsername = "s@gmail.com"
+        let validPassword = "Regularuser1"
+        
+        sut.login(user: validUsername, password: validPassword) { result in
+            switch result {
+            case .success(let jwtToken):
+                
+                XCTAssertFalse(jwtToken.isEmpty)
+                XCTAssertEqual(jwtToken,"eyJraWQiOiJwcml2YXRlIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJleHBpcmF0aW9uIjo2NDA5MjIxMTIwMCwiaWRlbnRpZnkiOiJDMzk0Mzc1NC04MUJCLTRDM0MtOTU3RS04MTcyOTQxOTQyQTEiLCJlbWFpbCI6InNAZ21haWwuY29tIn0.OHi5V6kGXtNaXR24VUFkkqTkoTwry7GZJaJNGhefee4")
+            case .failure(let error):
+                XCTFail("Login failed with error: \(error)")
+            }
+          
+        }
+        
+
     }
     
-    
-    
-    /*    override func setUpWithError() throws {
-     // Put setup code here. This method is called before the invocation of each test method in the class.
-     }
-     
-     override func tearDownWithError() throws {
-     // Put teardown code here. This method is called after the invocation of each test method in the class.
-     }
-     
-     func testExample() throws {
-     // This is an example of a functional test case.
-     // Use XCTAssert and related functions to verify your tests produce the correct results.
-     // Any test you write for XCTest can be annotated as throws and async.
-     // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-     // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-     }
-     
-     func testPerformanceExample() throws {
-     // This is an example of a performance test case.
-     self.measure {
-     // Put the code you want to measure the time of here.
-     }
-     }
-     
-     }
-     */
 }

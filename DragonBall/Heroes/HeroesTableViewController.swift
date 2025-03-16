@@ -28,6 +28,7 @@ final class HeroesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = .systemGray
         getHeros()
         
         

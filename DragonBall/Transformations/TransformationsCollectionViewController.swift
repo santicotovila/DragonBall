@@ -45,6 +45,7 @@ final class TransformationsCollectionViewController: UICollectionViewController 
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.backgroundColor = .lightGray
         
         let registration = UICollectionView.CellRegistration<TransformationsCollectionViewCell, Transformation>(
             cellNib: UINib(nibName: TransformationsCollectionViewCell.identifier, bundle: nil)) {
