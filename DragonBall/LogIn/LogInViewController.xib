@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogInViewController" customModule="DragonBall" customModuleProvider="target">
             <connections>
-                <outlet property="BackgroundLogin" destination="Tk2-16-wiG" id="LRB-Sp-0OU"/>
+                <outlet property="BackgroundLogin" destination="I4I-IQ-vHG" id="sxN-Ja-ZAH"/>
                 <outlet property="EmailLabel" destination="Vka-km-iys" id="sHV-LB-oWn"/>
                 <outlet property="PasswordLabel" destination="ZL7-LF-AIf" id="vwH-h9-oMs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,10 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2320823-1080x2280-samsung-hd-dragon-ball-z-abridged-background-photo" translatesAutoresizingMaskIntoConstraints="NO" id="Tk2-16-wiG">
-                    <rect key="frame" x="-687" y="-1462" width="1080" height="2280"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="xaS-kP-65v">
                     <rect key="frame" x="70" y="368" width="253" height="116.33333333333331"/>
                     <subviews>
@@ -53,12 +49,19 @@
                         </button>
                     </subviews>
                 </stackView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogIn1" translatesAutoresizingMaskIntoConstraints="NO" id="I4I-IQ-vHG">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="xaS-kP-65v" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="9h4-XP-CxM"/>
+                <constraint firstItem="I4I-IQ-vHG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="DqR-ek-3p3"/>
+                <constraint firstAttribute="bottom" secondItem="I4I-IQ-vHG" secondAttribute="bottom" id="XMV-IN-7tE"/>
                 <constraint firstItem="xaS-kP-65v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="fjU-QR-XHV"/>
+                <constraint firstItem="I4I-IQ-vHG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="o20-tf-ASy"/>
+                <constraint firstItem="I4I-IQ-vHG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="p2H-yC-iCA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xaS-kP-65v" secondAttribute="trailing" constant="70" id="szN-py-3VJ"/>
                 <constraint firstItem="xaS-kP-65v" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wJn-Up-P6I"/>
             </constraints>
@@ -66,7 +69,7 @@
         </view>
     </objects>
     <resources>
-        <image name="2320823-1080x2280-samsung-hd-dragon-ball-z-abridged-background-photo" width="1080" height="2280"/>
+        <image name="LogIn1" width="1080" height="2280"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
