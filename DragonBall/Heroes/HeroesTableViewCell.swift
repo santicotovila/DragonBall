@@ -1,15 +1,12 @@
-//
-//  HeroesTableViewCell.swift
-//  DragonBall
-//
-//  Created by Santiago Coto Vila on 11/03/2025.
-//
 
 import UIKit
+
+//Creation of cell and configuration.
 
 final class HeroesTableViewCell: UITableViewCell {
 
     static let identifierCell = String(describing: HeroesTableViewCell.self)
+    
 //MARK: - Outlets
     
     @IBOutlet var nameHero: UILabel!

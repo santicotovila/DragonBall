@@ -1,18 +1,11 @@
-//
-//  TransformationsCollectionViewController.swift
-//  DragonBall
-//
-//  Created by Santiago Coto Vila on 14/03/2025.
-//
 
 import UIKit
 
-// Creo el enum para hacerlo escalable.
+// enum to make app scalable
 enum TransformationsSection {
     case transformations
 }
 
-// Protocolo  fuera de la clase
 protocol LayoutDelegate {
     func createSizeForItem() -> CGSize
 }
@@ -34,6 +27,8 @@ final class TransformationsCollectionViewController: UICollectionViewController 
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Creating typealiases to shorten calls to the DataSource and Snapshot
+    
     typealias DataSource = UICollectionViewDiffableDataSource<TransformationsSection, Transformation>
     typealias SnapShot = NSDiffableDataSourceSnapshot<TransformationsSection, Transformation>
     
@@ -47,11 +42,15 @@ final class TransformationsCollectionViewController: UICollectionViewController 
         super.viewDidLoad()
         collectionView.backgroundColor = .lightGray
         
+        //Register cell in CollectionView
+        
         let registration = UICollectionView.CellRegistration<TransformationsCollectionViewCell, Transformation>(
             cellNib: UINib(nibName: TransformationsCollectionViewCell.identifier, bundle: nil)) {
                 cell, indexPath, transformation in
                 cell.configure(with: transformation)
         }
+        
+        //Configure cell reusable.
         
         dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, transformation in
             collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: transformation)
@@ -59,6 +58,7 @@ final class TransformationsCollectionViewController: UICollectionViewController 
         
         collectionView.dataSource = dataSource
         
+        //Call to transformations
         getTransformations()
         
         var snapshot = SnapShot()
@@ -79,7 +79,7 @@ final class TransformationsCollectionViewController: UICollectionViewController 
             switch result {
             case let .success(resultTransformations):
                 DispatchQueue.main.async {
-                    self.transformations = resultTransformations // Actualiza el array con los nuevos datos
+                    self.transformations = resultTransformations // Update array with new data
                     
                     var snapshot = SnapShot()
                     snapshot.appendSections([.transformations])
@@ -94,7 +94,7 @@ final class TransformationsCollectionViewController: UICollectionViewController 
 }
 
 
-// Implementación de UICollectionViewDelegateFlowLayout en la celda
+// Implementing UICollectionViewDelegateFlowLayout in the cell and structure the desired size.
 extension TransformationsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
@@ -108,18 +108,4 @@ extension TransformationsCollectionViewController: UICollectionViewDelegateFlowL
     
     
 }
-/*final class LayoutDelegator {
-    var delegate: LayoutDelegate?
-    
-    func configureCell() -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-        guard let size = delegate?.createSizeForItem() else {
-            return cell
-        }
-        // Añado el tamaño a la celda
-        cell.sizeThatFits(size)
-        return cell
-    }
-}
-*/
 

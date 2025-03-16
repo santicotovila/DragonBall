@@ -1,9 +1,3 @@
-//
-//  LogInViewController.swift
-//  DragonBall
-//
-//  Created by Santiago Coto Vila on 10/03/2025.
-//
 
 import UIKit
 
@@ -21,28 +15,20 @@ final class LogInViewController: UIViewController {
     
     @IBOutlet var PasswordLabel: UITextField!
     
-    
-    
-    //MARK: - Life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        customizeItems()
-       
-        
-    }
-    
     @IBAction func LogInButtonTapped() {
         getLogin()
     }
     
-    //He tenido que crear esta función porque quería dejar como rpivada la de getLogin y para asi hacer las pruebas del login a red.
+    
+    //MARK: - Life cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        customizeItems()
+    }
 
-func performLogin(user: String, password: String, completion: @escaping (Result<String, APIClientError>) -> Void) {
-        let networkModel = NetworkModel.shared
-        networkModel.login(user: user, password: password, completion: completion)
-        }
-        
-    private func getLogin() {
+    //Login making sure the fields are not empty and checking the token, if it is accepted, we navigate to the heroes table
+private func getLogin() {
     
     guard let user = EmailLabel.text, !user.isEmpty,
             let password = PasswordLabel.text, !password.isEmpty else {return}
@@ -58,30 +44,23 @@ func performLogin(user: String, password: String, completion: @escaping (Result<
                 
                 DispatchQueue.main.async { [weak self] in
                     
-                let heroesTableViewController = HeroesTableViewController()
+                    let heroesTableViewController = HeroesTableViewController()
                     self?.navigationController?.setViewControllers([heroesTableViewController], animated: true)
                     
-                
-            }
-                    
-            case let .failure(error):
-                print(error)
                     
                 }
                 
+            case let .failure(error):
+                print(error)
+                
+                }
             }
-                
-                
-                
         }
-        
-        
-       
                 
     }
             
         
-
+// Customize Login. Constrais for code because I couldn't extend it completely.
 private extension LogInViewController {
     
     func customizeItems() {

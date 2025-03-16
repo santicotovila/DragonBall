@@ -1,10 +1,3 @@
-//
-//  NetworkModelTests.swift
-//  DragonBallTests
-//
-//  Created by Santiago Coto Vila on 08/03/2025.
-//
-
 import XCTest
 @testable import DragonBall
 

@@ -1,16 +1,11 @@
-//
-//  HeroesTableViewController.swift
-//  DragonBall
-//
-//  Created by Santiago Coto Vila on 11/03/2025.
-//
 
 import UIKit
 
+// Enum created to make the application scalable
 enum HeroesSection {
     case Heroes
 }
-
+// Create tableView
 final class HeroesTableViewController: UITableViewController {
     
     static let identifierTable = String(describing: HeroesTableViewController.self)
@@ -21,25 +16,29 @@ final class HeroesTableViewController: UITableViewController {
     typealias SnapShot = NSDiffableDataSourceSnapshot<HeroesSection, Hero>
     
     private var dataSource: DataSource?
-    private var heroes: [Hero] = [] // Almacenar los héroes aquí
+    private var heroes: [Hero] = [] // Save heros here.
     
 
     let networkmodel = NetworkModel(client: APIClient.shared)
     
+    //MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Call Heros and configure background tableView.
         tableView.backgroundColor = .systemGray
         getHeros()
         
         
-        // Registrar la celda en la tabla
+        // Register the cell reusable in tableView
+        
         tableView.register(
             UINib(nibName: HeroesTableViewCell.identifierCell, bundle: nil),
             forCellReuseIdentifier: HeroesTableViewCell.identifierCell
         )
        
         
-        // Configurar el dataSource
+        // Configure dataSource
         dataSource = DataSource(tableView: tableView) { tableView, indexPath, hero in
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: HeroesTableViewCell.identifierCell,
@@ -55,6 +54,7 @@ final class HeroesTableViewController: UITableViewController {
         tableView.dataSource = dataSource
         tableView.delegate = self
         
+        //  Apply a dataSource Heros.
         var snapshot = SnapShot()
         snapshot.appendSections([.Heroes])
         snapshot.appendItems(heroes)
@@ -64,17 +64,21 @@ final class HeroesTableViewController: UITableViewController {
         
     }
     
+    // Get heros for tableView
+    
 private func getHeros() {
     let networkModel = NetworkModel.shared
     
+    // Avoid cycle retention
+    
     networkModel.getHeros { [weak self] result  in
-        
-        // Desempaqueto porque al tener que evitar el ciclo de retencion necesito hacer self opcional.
+  
       guard let self = self else { return }
         
         switch result {
         case let .success(resultHeroes):
             
+            // Main thread
             DispatchQueue.main.async {
                 self.heroes = resultHeroes
                 
@@ -89,15 +93,11 @@ private func getHeros() {
         }
     }
     
-    
     }
 
-    
-
-
-    
 }
 
+// Configuration cells.
 extension HeroesTableViewController {
     override func tableView(
         _ tableView: UITableView,
@@ -107,7 +107,7 @@ extension HeroesTableViewController {
     }
     
     
-    
+    //Select what we want to display in the row and use show to navigate to the next view.
     override func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath

@@ -1,9 +1,4 @@
-//
-//  AppDelegate.swift
-//  DragonBall
-//
-//  Created by Santiago Coto Vila on 06/03/2025.
-//
+
 
 import UIKit
 

@@ -1,20 +1,15 @@
-//
-//  InfoHeroViewController.swift
-//  DragonBall
-//
-//  Created by Santiago Coto Vila on 12/03/2025.
-//
-
 import UIKit
 
+// Create enum to scalable.
 enum InfoHeros {
     case Hero
 }
 
-
+// Configure ViewController
 final class InfoHeroViewController: UIViewController {
     
     static let identifierInfo = String(describing: InfoHeroViewController.self)
+    
     //MARK: - Outlets
     
     @IBOutlet var ImageHero: UIImageView!
@@ -30,17 +25,14 @@ final class InfoHeroViewController: UIViewController {
         navigationController?.show(transformationsVC, sender: self)
        
     }
-
     
-
+    //MARK: - Life cycle
     
     var hero: Hero?
     
-    
-    //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Desempaqueto porque es optional
+        // Unwrap becouse is optional.
         guard let hero = hero else { return }
         configure(with: hero)
         

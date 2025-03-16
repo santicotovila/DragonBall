@@ -1,11 +1,6 @@
-//
-//  TransformationsCollectionViewCell.swift
-//  DragonBall
-//
-//  Created by Santiago Coto Vila on 14/03/2025.
-//
 
 import UIKit
+
 
 final class TransformationsCollectionViewCell: UICollectionViewCell {
     

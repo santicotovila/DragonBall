@@ -1,9 +1,3 @@
-//
-//  DragonBallTests.swift
-//  DragonBallTests
-//
-//  Created by Santiago Coto Vila on 06/03/2025.
-//
 
 import XCTest
 @testable import DragonBall
@@ -52,29 +46,34 @@ final class TransformationTest: XCTestCase {
     }
 }
 
+
+//I had to do some research to test the login because it seemed complicated to me, but at least now I know how to test it.
 final class LoginAuthenticate: XCTestCase {
     
     var sut: NetworkModel!
     
     override func setUp() {
         super.setUp()
-        // Iniciamos el objeto NetworkModel que va a usar el APIClient real
+        
         sut = NetworkModel.shared
     }
 
     func testLoginSuccess() {
         
+        //Give
         let validUsername = "s@gmail.com"
         let validPassword = "Regularuser1"
         
+        //When
         sut.login(user: validUsername, password: validPassword) { result in
             switch result {
             case .success(let jwtToken):
-                
-                XCTAssertFalse(jwtToken.isEmpty)
-                XCTAssertEqual(jwtToken,"eyJraWQiOiJwcml2YXRlIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJleHBpcmF0aW9uIjo2NDA5MjIxMTIwMCwiaWRlbnRpZnkiOiJDMzk0Mzc1NC04MUJCLTRDM0MtOTU3RS04MTcyOTQxOTQyQTEiLCJlbWFpbCI6InNAZ21haWwuY29tIn0.OHi5V6kGXtNaXR24VUFkkqTkoTwry7GZJaJNGhefee4")
+        
+        //Assert
+                XCTAssertFalse(jwtToken.isEmpty) //Check that it is not empty
+                XCTAssertEqual(jwtToken,"eyJraWQiOiJwcml2YXRlIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJleHBpcmF0aW9uIjo2NDA5MjIxMTIwMCwiaWRlbnRpZnkiOiJDMzk0Mzc1NC04MUJCLTRDM0MtOTU3RS04MTcyOTQxOTQyQTEiLCJlbWFpbCI6InNAZ21haWwuY29tIn0.OHi5V6kGXtNaXR24VUFkkqTkoTwry7GZJaJNGhefee4")  // Check that the token is the expected one received.
             case .failure(let error):
-                XCTFail("Login failed with error: \(error)")
+                XCTFail("Login failed with error: \(error)") // Report an error if it fails.
             }
           
         }

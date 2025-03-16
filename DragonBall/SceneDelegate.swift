@@ -11,6 +11,8 @@ import UIKit
          guard let scene = (scene as? UIWindowScene) else { return }
          let window = UIWindow(windowScene: scene)
          
+         //Configure first window
+         
          let firstWindow = LogInViewController(nibName: LogInViewController.identifier, bundle: nil)
          
          let navigationController = UINavigationController(rootViewController: firstWindow)
